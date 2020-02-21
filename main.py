@@ -3,9 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 
 seconds_in_month = 2628000
-id1 = "213299754"
-id2 = "175773664"
-id3 = "118216952"
+id1 = "164952497"
 
 
 def distribution(t):
@@ -77,7 +75,7 @@ def build_with_xmsg(time, differences, window_size=3000):
     return ans
 
 
-def plot_dist_xtime(identifier="213299754", window_size=seconds_in_month):
+def plot_dist_xtime(identifier="164952497", window_size=seconds_in_month):
     """
     :param identifier: id of user
     :param model: method for calculating frequency
@@ -112,8 +110,7 @@ def plot_dist_xtime(identifier="213299754", window_size=seconds_in_month):
     plt.plot(x_user2, y, label="difference in activity", lw=3.5)
     plt.xlabel("months", fontsize=27)
     plt.ylabel("difference", fontsize=27)
-    #print("vk.com/id{id} игнорит {count} сообщений в месяц".format(id=identifier, count=np.mean(y)*window_size))
-    print("\n\n\n")
+    #print("vk.com/id{id} игнорит {count} сообщений в месяц\n\n".format(id=identifier, count=np.mean(y)*window_size))
     plt.show()
 
 
@@ -126,10 +123,4 @@ def testing_timing(time):
 
 
 plot_dist_xtime(identifier=id1, window_size=seconds_in_month)
-plot_dist_xtime(identifier=id2, window_size=seconds_in_month)
-# plot_dist_xtime(identifier=id3, window_size=seconds_in_month/30)
 
-# todo:
-#  3) think about heuristics for messages-in-a-row
-#  4) optional: remove all inverses and do inverse in timing method in dates.py
-#  6) optional: if file exists read it instead of making in dates.py
