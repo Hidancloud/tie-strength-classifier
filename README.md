@@ -1,13 +1,13 @@
 # tie-strength-classifier
 Code for research thesis, Innopolis 2019-2020
 
-Structure: 
+Project structure: 
 
     . 
     └── dates.py
     └── main.py
     └── data
-    └──raw
+    └── raw
         └──*id1*
             └──messages0.html
             └──messages300.html
