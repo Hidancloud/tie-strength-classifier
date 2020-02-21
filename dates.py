@@ -46,7 +46,7 @@ def get_dates(c_id):
     return messaging
 
 
-def get_directed_dates(c_id="175773664", from_me=True):
+def get_directed_dates(c_id="164952497", from_me=True):
     messages = open(os.getcwd() + '/data/raw/' + c_id + '_messages.txt', 'r', encoding='windows-1251').read()
     message_time = open(os.getcwd() + "/data/preprocessed/" + c_id + "_" + str(from_me) + "_time.txt", "w")
     date_mask = r'\d+ [а-я]{3} 20[0-9]{2} в \d+:\d\d:\d\d'
@@ -64,7 +64,7 @@ def get_directed_dates(c_id="175773664", from_me=True):
     return messaging
 
 
-def slow_get_directed_dates(c_id="175773664", from_me=True):
+def slow_get_directed_dates(c_id="164952497", from_me=True):  
     messages = open(os.getcwd() + '/data/raw/' + c_id + '_messages.txt', 'r', encoding='windows-1251').read()
     message_time = open(os.getcwd() + "/data/preprocessed/" + c_id + "_" + str(from_me) + "_time.txt", "w")
     soup = BeautifulSoup(messages, "lxml")
