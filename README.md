@@ -2,10 +2,11 @@
 Code for research thesis, Innopolis 2019-2020
 
 Structure: 
-./
-├── dates.py
-├── main.py
-└── data
+
+    . 
+    └── dates.py
+    └── main.py
+    └── data
     └──raw
         └──*id1*
             └──messages0.html
