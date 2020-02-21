@@ -80,38 +80,42 @@ def plot_dist_xtime(identifier="164952497", window_size=seconds_in_month):
     :param identifier: id of user
     :param model: method for calculating frequency
     :param window_size: in seconds or number of messages
-    :return: nothing
+    :return: activity of first user and the second
     """
     dates.create_single_file(identifier)
-    plt.figure(figsize=(10, 7.), dpi=300)
+    plt.figure(figsize=(10, 7.), dpi=200)
     diffs, timing = dates.making_difference_sorted(dates.get_directed_dates(identifier, from_me=True))
+    # ans will return activity of user1 in this case, x axis is time and y is activity
+    # with sliding window approach
     ans = build_with_xtime(timing, diffs, window_size)  # window_size is seconds only for xtime
     x_user1 = np.array(ans[0])
     y_user1 = np.array(ans[1])
-    plt.plot(x_user1, y_user1, label="User1 activity", lw=3.5)
+    plt.plot(x_user1, y_user1, label="User1 activity", lw=2.)
 
     diffs, timing = dates.making_difference_sorted(dates.get_directed_dates(identifier, from_me=False))
+    # ans will return activity of user2 in this case, x axis is time and y is activity
+    # with sliding window approach
     ans = build_with_xtime(timing, diffs, window_size)  # window_size is seconds only for xtime
     x_user2 = np.array(ans[0])
     y_user2 = np.array(ans[1])
-    plt.plot(x_user2, y_user2, label="User2 activity", lw=3.5)
-
+    plt.plot(x_user2, y_user2, label="User2 activity", lw=2.)
+    print(x_user1)
     diffs, timing = dates.making_difference_sorted(dates.get_dates(identifier))
     ans = build_with_xtime(timing, diffs, window_size)  # window_size is seconds only for xtime
-    plt.plot(ans[0], ans[1], label="Summary activity", lw=3.5)
+    plt.plot(ans[0], ans[1], label="Summary activity", lw=2.)
 
     plt.legend()
     plt.xlabel("months", fontsize=27)
     plt.ylabel("frequency", fontsize=27)
     plt.show()
-
-    plt.figure(figsize=(10, 7.), dpi=300)
+    plt.figure(figsize=(10, 7.), dpi=200)
     y = np.interp(x_user2, x_user1, y_user1) - y_user2
-    plt.plot(x_user2, y, label="difference in activity", lw=3.5)
+    plt.plot(x_user2, y, label="difference in activity", lw=2.)
     plt.xlabel("months", fontsize=27)
     plt.ylabel("difference", fontsize=27)
-    #print("vk.com/id{id} игнорит {count} сообщений в месяц\n\n".format(id=identifier, count=np.mean(y)*window_size))
+    #print("vk.com/id{id} игнорит {count} сообщений в месяцn\n".format(id=identifier, count=np.mean(y)*window_size))
     plt.show()
+    return [x_user1, y_user1], [x_user2, y_user2]
 
 
 def testing_timing(time):
@@ -122,5 +126,5 @@ def testing_timing(time):
     plt.show()
 
 
-plot_dist_xtime(identifier=id1, window_size=seconds_in_month)
+users = plot_dist_xtime(identifier=id1, window_size=seconds_in_month)
 
